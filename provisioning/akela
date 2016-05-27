@@ -1,0 +1,57 @@
+server {
+    listen 80;
+    listen 443;
+
+    ssl on;
+    ssl_certificate /etc/nginx/certs/server.crt;
+    ssl_certificate_key /etc/nginx/certs/server.key;
+
+    server_name akela.dev;
+    root /var/akela/web;
+
+    more_set_headers 'Access-Control-Allow-Origin: $http_origin';
+    more_set_headers 'Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE, HEAD';
+    more_set_headers 'Access-Control-Allow-Credentials: true';
+    more_set_headers 'Access-Control-Allow-Headers: Origin,Content-Type,Accept,Authorization';
+
+    location / {
+        # try to serve file directly, fallback to app.php
+        try_files $uri /app_dev.php$is_args$args;
+
+	# auth_basic "Restricted"; #For Basic Auth
+        # auth_basic_user_file /etc/nginx/.htpasswd; #For Basic Auth
+
+	# allow 203.174.157.89/32;
+    	# allow 127.0.0.1;
+    	# deny all;
+
+    }
+    # DEV
+    # This rule should only be placed on your development environment
+    # In production, don't include this and don't deploy app_dev.php or config.php
+    #location ~ ^/(app_dev|config|namefinder)\.php(/|$) {
+     location ~ [^/]\.php(/|$) {
+	    fastcgi_pass unix:/var/run/php5-fpm.sock;
+      fastcgi_split_path_info ^(.+\.php)(/.*)$;
+      fastcgi_index index.php;
+      include fastcgi_params;
+      fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    }
+    # PROD
+    location ~ ^/app\.php(/|$) {
+
+    	fastcgi_split_path_info ^(.+\.php)(/.+)$;
+   	  fastcgi_pass unix:/var/run/php5-fpm.sock;
+    	fastcgi_index index.php;
+    	include fastcgi_params;
+    	fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+
+        # Prevents URIs that include the front controller. This will 404:
+        # http://domain.tld/app.php/some-path
+        # Remove the internal directive to allow URIs like this
+        internal;
+    }
+
+    error_log /var/log/nginx/akela_error.log;
+    access_log /var/log/nginx/akela_access.log;
+}
