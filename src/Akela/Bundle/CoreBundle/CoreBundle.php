@@ -1,0 +1,41 @@
+<?php
+/**
+ * @package    AkelaApp
+ *
+ * @copyright  Copyright (C) 2016 Akela Solutions Pty Ltd.  All Rights Reserved
+ * @License    PROPRIETARY
+ */
+
+namespace Akela\Bundle\CoreBundle;
+
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\HttpKernel\Bundle\Bundle;
+
+//use Veromo\Component\DependencyInjection\Compiler\DoctrineEntityListenerPass;
+
+////////////////////////////////////////////////////////////////////
+// - CLASS DECLARATION - ///////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+/**
+ * CoreBundle Class
+ *
+ * DESCRIPTION
+ *
+ * @package     VeromoApp
+ * @version     1.0
+ */
+class CoreBundle extends Bundle
+{
+    ////////////////////////////////////////////////////////////////
+    // - PUBLIC MEMBER METHODS - ///////////////////////////////////
+    ////////////////////////////////////////////////////////////////
+//    public function build( ContainerBuilder $container )
+//    {
+//        parent::build( $container );
+//
+//        $container->addCompilerPass( new DoctrineEntityListenerPass() );
+//    }
+}
+////////////////////////////////////////////////////////////////////
+// - END CLASS - ///////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
