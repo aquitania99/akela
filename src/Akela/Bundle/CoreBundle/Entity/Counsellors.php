@@ -4,6 +4,8 @@ namespace Akela\Bundle\CoreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use Akela\Bundle\CoreBundle\Entity\Offices;
+
 /**
  * Counsellors
  *
@@ -13,11 +15,10 @@ use Doctrine\ORM\Mapping as ORM;
 class Counsellors
 {
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="office_id", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="Offices")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $officeId;
+    private $office;
 
     /**
      * @var string
@@ -98,31 +99,22 @@ class Counsellors
      */
     private $id;
 
-
-
     /**
-     * Set officeId
-     *
-     * @param integer $officeId
-     *
-     * @return Counsellors
+     * @return mixed
      */
-    public function setOfficeId($officeId)
+    public function getOffice()
     {
-        $this->officeId = $officeId;
-
-        return $this;
+        return $this->office;
     }
 
     /**
-     * Get officeId
-     *
-     * @return integer
+     * @param mixed $office
      */
-    public function getOfficeId()
+    public function setOffice(Offices $office)
     {
-        return $this->officeId;
+        $this->office = $office;
     }
+
 
     /**
      * Set firstname

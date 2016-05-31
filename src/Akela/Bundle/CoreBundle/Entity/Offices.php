@@ -15,14 +15,14 @@ class Offices
     /**
      * @var string
      *
-     * @ORM\Column(name="address_line1", type="string", length=255, nullable=false)
+     * @ORM\Column(name="addressLine1", type="string", length=255, nullable=false)
      */
     private $addressLine1;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="address_line2", type="string", length=255, nullable=false)
+     * @ORM\Column(name="addressLine2", type="string", length=255, nullable=false)
      */
     private $addressLine2;
 

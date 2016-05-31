@@ -1,3 +1,13 @@
+Akela\Bundle\CoreBundle\Entity\Offices:
+    offices_{1..5}:
+        addressLine1: <secondaryAddress()>
+        addressLine2: <streetName()>
+        phone: <phoneNumber()>
+        city: <city()>
+        state: <state()>
+        country: <country()>
+        postcode: <postcode()>
+
 Akela\Bundle\CoreBundle\Entity\Counsellors:
     counsellors_{1..5}:
         firstname: <firstName()>
@@ -7,6 +17,7 @@ Akela\Bundle\CoreBundle\Entity\Counsellors:
         mobile: <phoneNumber()>
         language: "Spanish"
         active: 1
+        office: '@offices_*'
 
 Akela\Bundle\CoreBundle\Entity\Users:
     users_{1..10}:
