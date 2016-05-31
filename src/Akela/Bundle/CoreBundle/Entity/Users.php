@@ -4,6 +4,8 @@ namespace Akela\Bundle\CoreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use Akela\Bundle\CoreBundle\Entity\Counsellors;
+
 /**
  * Users
  *
@@ -13,16 +15,15 @@ use Doctrine\ORM\Mapping as ORM;
 class Users
 {
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="counsellor_id", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="Counsellors")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $counsellorId;
+    private $counsellor;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="type", type="string", length=255, nullable=false)
+     * @ORM\Column(name="type", type="string", length=255, nullable=true)
      */
     private $type;
 
@@ -43,7 +44,7 @@ class Users
     /**
      * @var string
      *
-     * @ORM\Column(name="username", type="string", length=255, nullable=false)
+     * @ORM\Column(name="username", type="string", length=255, nullable=true)
      */
     private $username;
 
@@ -87,28 +88,28 @@ class Users
     /**
      * @var string
      *
-     * @ORM\Column(name="nationality", type="string", length=255, nullable=false)
+     * @ORM\Column(name="nationality", type="string", length=255, nullable=true)
      */
     private $nationality;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dob", type="date", nullable=false)
+     * @ORM\Column(name="dob", type="date", nullable=true)
      */
     private $dob;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="birth_country", type="string", length=255, nullable=false)
+     * @ORM\Column(name="birth_country", type="string", length=255, nullable=true)
      */
     private $birthCountry;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="birth_city", type="string", length=255, nullable=false)
+     * @ORM\Column(name="birth_city", type="string", length=255, nullable=true)
      */
     private $birthCity;
 
@@ -133,30 +134,20 @@ class Users
      */
     private $updatedAt;
 
-
-
     /**
-     * Set counsellorId
-     *
-     * @param integer $counsellorId
-     *
-     * @return Users
+     * @return mixed
      */
-    public function setCounsellorId($counsellorId)
+    public function getCounsellor()
     {
-        $this->counsellorId = $counsellorId;
-
-        return $this;
+        return $this->counsellor;
     }
 
     /**
-     * Get counsellorId
-     *
-     * @return integer
+     * @param mixed $counsellor
      */
-    public function getCounsellorId()
+    public function setCounsellor(Counsellors $counsellor)
     {
-        return $this->counsellorId;
+        $this->counsellor = $counsellor;
     }
 
     /**

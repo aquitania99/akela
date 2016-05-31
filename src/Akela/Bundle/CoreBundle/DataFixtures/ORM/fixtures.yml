@@ -1,3 +1,13 @@
+Akela\Bundle\CoreBundle\Entity\Counsellors:
+    counsellors_{1..5}:
+        firstname: <firstName()>
+        lastname: <lastName()>
+        email: <email()>
+        password: "Pass@word01"
+        mobile: <phoneNumber()>
+        language: "Spanish"
+        active: 1
+
 Akela\Bundle\CoreBundle\Entity\Users:
     users_{1..10}:
         type: "usr"
@@ -7,5 +17,7 @@ Akela\Bundle\CoreBundle\Entity\Users:
         email: <email()>
         password: "Pass@word01"
         mobile: <phoneNumber()>
-        gender: "M"
+        gender: '50%? M : F'
         nationality: <country()>
+        counsellor: '@counsellors_*'
+
