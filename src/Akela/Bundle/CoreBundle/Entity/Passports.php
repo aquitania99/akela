@@ -71,5 +71,182 @@ class Passports
     private $id;
 
 
-}
 
+    /**
+     * Set userId
+     *
+     * @param integer $userId
+     *
+     * @return Passports
+     */
+    public function setUserId($userId)
+    {
+        $this->userId = $userId;
+
+        return $this;
+    }
+
+    /**
+     * Get userId
+     *
+     * @return integer
+     */
+    public function getUserId()
+    {
+        return $this->userId;
+    }
+
+    /**
+     * Set passportNumber
+     *
+     * @param string $passportNumber
+     *
+     * @return Passports
+     */
+    public function setPassportNumber($passportNumber)
+    {
+        $this->passportNumber = $passportNumber;
+
+        return $this;
+    }
+
+    /**
+     * Get passportNumber
+     *
+     * @return string
+     */
+    public function getPassportNumber()
+    {
+        return $this->passportNumber;
+    }
+
+    /**
+     * Set passportIssueDate
+     *
+     * @param \DateTime $passportIssueDate
+     *
+     * @return Passports
+     */
+    public function setPassportIssueDate($passportIssueDate)
+    {
+        $this->passportIssueDate = $passportIssueDate;
+
+        return $this;
+    }
+
+    /**
+     * Get passportIssueDate
+     *
+     * @return \DateTime
+     */
+    public function getPassportIssueDate()
+    {
+        return $this->passportIssueDate;
+    }
+
+    /**
+     * Set passportExpiryDate
+     *
+     * @param \DateTime $passportExpiryDate
+     *
+     * @return Passports
+     */
+    public function setPassportExpiryDate($passportExpiryDate)
+    {
+        $this->passportExpiryDate = $passportExpiryDate;
+
+        return $this;
+    }
+
+    /**
+     * Get passportExpiryDate
+     *
+     * @return \DateTime
+     */
+    public function getPassportExpiryDate()
+    {
+        return $this->passportExpiryDate;
+    }
+
+    /**
+     * Set passportIssuingAuthority
+     *
+     * @param integer $passportIssuingAuthority
+     *
+     * @return Passports
+     */
+    public function setPassportIssuingAuthority($passportIssuingAuthority)
+    {
+        $this->passportIssuingAuthority = $passportIssuingAuthority;
+
+        return $this;
+    }
+
+    /**
+     * Get passportIssuingAuthority
+     *
+     * @return integer
+     */
+    public function getPassportIssuingAuthority()
+    {
+        return $this->passportIssuingAuthority;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     *
+     * @return Passports
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     *
+     * @return Passports
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+}

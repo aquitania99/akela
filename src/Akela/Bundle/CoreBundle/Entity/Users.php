@@ -5,19 +5,35 @@ namespace Akela\Bundle\CoreBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Counsellors
+ * Users
  *
- * @ORM\Table(name="counsellors", uniqueConstraints={@ORM\UniqueConstraint(name="counsellors_email_unique", columns={"email"})})
+ * @ORM\Table(name="users", uniqueConstraints={@ORM\UniqueConstraint(name="users_username_unique", columns={"username"}), @ORM\UniqueConstraint(name="users_email_unique", columns={"email"})})
  * @ORM\Entity
  */
-class Counsellors
+class Users
 {
     /**
      * @var integer
      *
-     * @ORM\Column(name="office_id", type="integer", nullable=false)
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $officeId;
+    private $id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="counsellor_id", type="integer", nullable=false)
+     */
+    private $counsellorId;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="type", type="string", length=255, nullable=false)
+     */
+    private $type;
 
     /**
      * @var string
@@ -32,6 +48,13 @@ class Counsellors
      * @ORM\Column(name="lastname", type="string", length=255, nullable=false)
      */
     private $lastname;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="username", type="string", length=255, nullable=false)
+     */
+    private $username;
 
     /**
      * @var string
@@ -57,16 +80,37 @@ class Counsellors
     /**
      * @var string
      *
-     * @ORM\Column(name="language", type="string", length=255, nullable=false)
+     * @ORM\Column(name="gender", type="string", length=255, nullable=false)
      */
-    private $language;
+    private $gender;
 
     /**
-     * @var boolean
+     * @var string
      *
-     * @ORM\Column(name="active", type="boolean", nullable=false)
+     * @ORM\Column(name="nationality", type="string", length=255, nullable=false)
      */
-    private $active;
+    private $nationality;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dob", type="date", nullable=false)
+     */
+    private $dob;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="birth_country", type="string", length=255, nullable=false)
+     */
+    private $birthCountry;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="birth_city", type="string", length=255, nullable=false)
+     */
+    private $birthCity;
 
     /**
      * @var string
@@ -89,39 +133,54 @@ class Counsellors
      */
     private $updatedAt;
 
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $id;
-
 
 
     /**
-     * Set officeId
+     * Set counsellorId
      *
-     * @param integer $officeId
+     * @param integer $counsellorId
      *
-     * @return Counsellors
+     * @return Users
      */
-    public function setOfficeId($officeId)
+    public function setCounsellorId($counsellorId)
     {
-        $this->officeId = $officeId;
+        $this->counsellorId = $counsellorId;
 
         return $this;
     }
 
     /**
-     * Get officeId
+     * Get counsellorId
      *
      * @return integer
      */
-    public function getOfficeId()
+    public function getCounsellorId()
     {
-        return $this->officeId;
+        return $this->counsellorId;
+    }
+
+    /**
+     * Set type
+     *
+     * @param string $type
+     *
+     * @return Users
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 
     /**
@@ -129,7 +188,7 @@ class Counsellors
      *
      * @param string $firstname
      *
-     * @return Counsellors
+     * @return Users
      */
     public function setFirstname($firstname)
     {
@@ -153,7 +212,7 @@ class Counsellors
      *
      * @param string $lastname
      *
-     * @return Counsellors
+     * @return Users
      */
     public function setLastname($lastname)
     {
@@ -173,11 +232,35 @@ class Counsellors
     }
 
     /**
+     * Set username
+     *
+     * @param string $username
+     *
+     * @return Users
+     */
+    public function setUsername($username)
+    {
+        $this->username = $username;
+
+        return $this;
+    }
+
+    /**
+     * Get username
+     *
+     * @return string
+     */
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    /**
      * Set email
      *
      * @param string $email
      *
-     * @return Counsellors
+     * @return Users
      */
     public function setEmail($email)
     {
@@ -201,7 +284,7 @@ class Counsellors
      *
      * @param string $password
      *
-     * @return Counsellors
+     * @return Users
      */
     public function setPassword($password)
     {
@@ -225,7 +308,7 @@ class Counsellors
      *
      * @param integer $mobile
      *
-     * @return Counsellors
+     * @return Users
      */
     public function setMobile($mobile)
     {
@@ -245,51 +328,123 @@ class Counsellors
     }
 
     /**
-     * Set language
+     * Set gender
      *
-     * @param string $language
+     * @param string $gender
      *
-     * @return Counsellors
+     * @return Users
      */
-    public function setLanguage($language)
+    public function setGender($gender)
     {
-        $this->language = $language;
+        $this->gender = $gender;
 
         return $this;
     }
 
     /**
-     * Get language
+     * Get gender
      *
      * @return string
      */
-    public function getLanguage()
+    public function getGender()
     {
-        return $this->language;
+        return $this->gender;
     }
 
     /**
-     * Set active
+     * Set nationality
      *
-     * @param boolean $active
+     * @param string $nationality
      *
-     * @return Counsellors
+     * @return Users
      */
-    public function setActive($active)
+    public function setNationality($nationality)
     {
-        $this->active = $active;
+        $this->nationality = $nationality;
 
         return $this;
     }
 
     /**
-     * Get active
+     * Get nationality
      *
-     * @return boolean
+     * @return string
      */
-    public function getActive()
+    public function getNationality()
     {
-        return $this->active;
+        return $this->nationality;
+    }
+
+    /**
+     * Set dob
+     *
+     * @param \DateTime $dob
+     *
+     * @return Users
+     */
+    public function setDob($dob)
+    {
+        $this->dob = $dob;
+
+        return $this;
+    }
+
+    /**
+     * Get dob
+     *
+     * @return \DateTime
+     */
+    public function getDob()
+    {
+        return $this->dob;
+    }
+
+    /**
+     * Set birthCountry
+     *
+     * @param string $birthCountry
+     *
+     * @return Users
+     */
+    public function setBirthCountry($birthCountry)
+    {
+        $this->birthCountry = $birthCountry;
+
+        return $this;
+    }
+
+    /**
+     * Get birthCountry
+     *
+     * @return string
+     */
+    public function getBirthCountry()
+    {
+        return $this->birthCountry;
+    }
+
+    /**
+     * Set birthCity
+     *
+     * @param string $birthCity
+     *
+     * @return Users
+     */
+    public function setBirthCity($birthCity)
+    {
+        $this->birthCity = $birthCity;
+
+        return $this;
+    }
+
+    /**
+     * Get birthCity
+     *
+     * @return string
+     */
+    public function getBirthCity()
+    {
+        return $this->birthCity;
     }
 
     /**
@@ -297,7 +452,7 @@ class Counsellors
      *
      * @param string $rememberToken
      *
-     * @return Counsellors
+     * @return Users
      */
     public function setRememberToken($rememberToken)
     {
@@ -321,7 +476,7 @@ class Counsellors
      *
      * @param \DateTime $createdAt
      *
-     * @return Counsellors
+     * @return Users
      */
     public function setCreatedAt($createdAt)
     {
@@ -345,7 +500,7 @@ class Counsellors
      *
      * @param \DateTime $updatedAt
      *
-     * @return Counsellors
+     * @return Users
      */
     public function setUpdatedAt($updatedAt)
     {

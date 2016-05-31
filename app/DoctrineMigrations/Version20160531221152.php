@@ -8,7 +8,7 @@ use Doctrine\DBAL\Schema\Schema;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-class Version20160531212737 extends AbstractMigration
+class Version20160531221152 extends AbstractMigration
 {
     /**
      * @param Schema $schema
@@ -27,6 +27,7 @@ class Version20160531212737 extends AbstractMigration
         $this->addSql('CREATE TABLE offices (id INT AUTO_INCREMENT NOT NULL, address_line1 VARCHAR(255) NOT NULL, address_line2 VARCHAR(255) NOT NULL, phone VARCHAR(255) NOT NULL, city VARCHAR(255) NOT NULL, state VARCHAR(255) NOT NULL, country VARCHAR(255) NOT NULL, postcode INT NOT NULL, created_at DATETIME DEFAULT NULL, updated_at DATETIME DEFAULT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB');
         $this->addSql('CREATE TABLE passports (id INT AUTO_INCREMENT NOT NULL, user_id INT NOT NULL, passport_number VARCHAR(255) NOT NULL, passport_issue_date DATE NOT NULL, passport_expiry_date DATE NOT NULL, passport_issuing_authority INT NOT NULL, created_at DATETIME DEFAULT NULL, updated_at DATETIME DEFAULT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB');
         $this->addSql('CREATE TABLE password_resets (id INT AUTO_INCREMENT NOT NULL, email VARCHAR(255) NOT NULL, token VARCHAR(255) NOT NULL, created_at DATETIME NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE users (id INT AUTO_INCREMENT NOT NULL, counsellor_id INT NOT NULL, type VARCHAR(255) NOT NULL, firstname VARCHAR(255) NOT NULL, lastname VARCHAR(255) NOT NULL, username VARCHAR(255) NOT NULL, email VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL, mobile INT NOT NULL, gender VARCHAR(255) NOT NULL, nationality VARCHAR(255) NOT NULL, dob DATE NOT NULL, birth_country VARCHAR(255) NOT NULL, birth_city VARCHAR(255) NOT NULL, remember_token VARCHAR(100) DEFAULT NULL, created_at DATETIME DEFAULT NULL, updated_at DATETIME DEFAULT NULL, UNIQUE INDEX users_username_unique (username), UNIQUE INDEX users_email_unique (email), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB');
     }
 
     /**
@@ -46,5 +47,6 @@ class Version20160531212737 extends AbstractMigration
         $this->addSql('DROP TABLE offices');
         $this->addSql('DROP TABLE passports');
         $this->addSql('DROP TABLE password_resets');
+        $this->addSql('DROP TABLE users');
     }
 }

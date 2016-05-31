@@ -1,0 +1,8 @@
+CoreBundle\Entity\Users:
+    users_{1..10}:
+        firstname: <firstName()>
+        lastname: <lastName()>
+        username: <userName()>
+        password: "Pass@word01"
+        mobile: <telephone()>
+        gender: "M"
