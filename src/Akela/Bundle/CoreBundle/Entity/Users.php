@@ -15,15 +15,6 @@ class Users
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
-
-    /**
-     * @var integer
-     *
      * @ORM\Column(name="counsellor_id", type="integer", nullable=false)
      */
     private $counsellorId;
@@ -76,6 +67,15 @@ class Users
      * @ORM\Column(name="mobile", type="integer", nullable=false)
      */
     private $mobile;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
 
     /**
      * @var string

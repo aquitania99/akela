@@ -1,8 +1,11 @@
-CoreBundle\Entity\Users:
+Akela\Bundle\CoreBundle\Entity\Users:
     users_{1..10}:
+        type: "usr"
         firstname: <firstName()>
         lastname: <lastName()>
         username: <userName()>
+        email: <email()>
         password: "Pass@word01"
-        mobile: <telephone()>
+        mobile: <phoneNumber()>
         gender: "M"
+        nationality: <country()>

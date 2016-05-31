@@ -11,7 +11,7 @@ namespace Akela\Bundle\CoreBundle\DataFixtures;
 use Akela\Bundle\CoreBundle\Entity\Users;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use Nelmio\Alice\Fixtures;
+use \Nelmio\Alice\Fixtures;
 
 class LoadFixtures implements FixtureInterface
 {
@@ -19,6 +19,9 @@ class LoadFixtures implements FixtureInterface
     public function load(ObjectManager $manager)
     {
 
-        Fixtures::load(__DIR__.'/fixtures.yml', $manager);
+        Fixtures::load(
+            __DIR__ . '/fixtures.yml',
+            $manager
+        );
     }
 }
