@@ -17,6 +17,12 @@ class PublicController  extends Controller
 {
     public function indexAction()
     {
+        $em = $this->getDoctrine()->getManager();
+
+        $countries = $em->getRepository('CoreBundle:User')->findAll();
+
+        dump($countries);
+
         return $this->render('::home.html.twig');
     }
 }
