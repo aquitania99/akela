@@ -7,10 +7,10 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * EmploymentDetails
  *
- * @ORM\Table(name="employment_details")
+ * @ORM\Table(name="employment_detail")
  * @ORM\Entity
  */
-class EmploymentDetails
+class EmploymentDetail
 {
     /**
      * @var string

@@ -7,15 +7,15 @@ use Doctrine\ORM\Mapping as ORM;
 use Akela\Bundle\CoreBundle\Entity\Offices;
 
 /**
- * Counsellors
+ * Counsellor
  *
- * @ORM\Table(name="counsellors", uniqueConstraints={@ORM\UniqueConstraint(name="counsellors_email_unique", columns={"email"})})
+ * @ORM\Table(name="counsellor", uniqueConstraints={@ORM\UniqueConstraint(name="counsellor_email_unique", columns={"email"})})
  * @ORM\Entity
  */
-class Counsellors
+class Counsellor
 {
     /**
-     * @ORM\ManyToOne(targetEntity="Offices")
+     * @ORM\ManyToOne(targetEntity="Office")
      * @ORM\JoinColumn(nullable=false)
      */
     private $office;
@@ -110,7 +110,7 @@ class Counsellors
     /**
      * @param mixed $office
      */
-    public function setOffice(Offices $office)
+    public function setOffice(Office $office)
     {
         $this->office = $office;
     }

@@ -1,5 +1,5 @@
-Akela\Bundle\CoreBundle\Entity\Offices:
-    offices_{1..5}:
+Akela\Bundle\CoreBundle\Entity\Office:
+    office_{1..5}:
         addressLine1: <secondaryAddress()>
         addressLine2: <streetName()>
         phone: <phoneNumber()>
@@ -8,8 +8,8 @@ Akela\Bundle\CoreBundle\Entity\Offices:
         country: <country()>
         postcode: <postcode()>
 
-Akela\Bundle\CoreBundle\Entity\Counsellors:
-    counsellors_{1..5}:
+Akela\Bundle\CoreBundle\Entity\Counsellor:
+    counsellor_{1..5}:
         firstname: <firstName()>
         lastname: <lastName()>
         email: <email()>
@@ -17,18 +17,17 @@ Akela\Bundle\CoreBundle\Entity\Counsellors:
         mobile: <phoneNumber()>
         language: "Spanish"
         active: 1
-        office: '@offices_*'
+        office: '@office_*'
 
-Akela\Bundle\CoreBundle\Entity\Users:
-    users_{1..10}:
+Akela\Bundle\CoreBundle\Entity\User:
+    user_{1..10}:
         type: "usr"
         firstname: <firstName()>
         lastname: <lastName()>
         username: <userName()>
-        email: <email()>
+        email (unique): <email()>
         password: "Pass@word01"
         mobile: <phoneNumber()>
         gender: '50%? M : F'
         nationality: <country()>
-        counsellor: '@counsellors_*'
-
+        counsellor: '@counsellor_*'

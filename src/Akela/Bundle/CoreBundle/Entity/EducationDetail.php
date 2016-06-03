@@ -5,12 +5,12 @@ namespace Akela\Bundle\CoreBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * EducationDetails
+ * EducationDetail
  *
- * @ORM\Table(name="education_details")
+ * @ORM\Table(name="education_detail")
  * @ORM\Entity
  */
-class EducationDetails
+class EducationDetail
 {
     /**
      * @var integer

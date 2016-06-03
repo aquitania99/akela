@@ -5,12 +5,12 @@ namespace Akela\Bundle\CoreBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * PasswordResets
+ * PasswordReset
  *
- * @ORM\Table(name="password_resets")
+ * @ORM\Table(name="password_reset")
  * @ORM\Entity
  */
-class PasswordResets
+class PasswordReset
 {
     /**
      * @var string

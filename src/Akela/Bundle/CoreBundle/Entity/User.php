@@ -7,15 +7,15 @@ use Doctrine\ORM\Mapping as ORM;
 use Akela\Bundle\CoreBundle\Entity\Counsellors;
 
 /**
- * Users
+ * User
  *
- * @ORM\Table(name="users", uniqueConstraints={@ORM\UniqueConstraint(name="users_username_unique", columns={"username"}), @ORM\UniqueConstraint(name="users_email_unique", columns={"email"})})
+ * @ORM\Table(name="user", uniqueConstraints={@ORM\UniqueConstraint(name="user_username_unique", columns={"username"}), @ORM\UniqueConstraint(name="user_email_unique", columns={"email"})})
  * @ORM\Entity
  */
-class Users
+class User
 {
     /**
-     * @ORM\ManyToOne(targetEntity="Counsellors")
+     * @ORM\ManyToOne(targetEntity="Counsellor")
      * @ORM\JoinColumn(nullable=false)
      */
     private $counsellor;
@@ -145,7 +145,7 @@ class Users
     /**
      * @param mixed $counsellor
      */
-    public function setCounsellor(Counsellors $counsellor)
+    public function setCounsellor(Counsellor $counsellor)
     {
         $this->counsellor = $counsellor;
     }
