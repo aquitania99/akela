@@ -8,14 +8,15 @@
 
 namespace Akela\Bundle\UserBundle\Controller;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-class UserController
+class UserController extends Controller
 {
-    public function indexAction(Request $request)
+    public function indexAction()
     {
-        
+        $user = $this->getUser();
+        dump($user);
+        return $this->render('UserBundle:Security:login.html.twig');
     }
 }

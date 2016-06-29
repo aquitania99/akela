@@ -2,6 +2,17 @@
 # http://symfony.com/doc/current/book/security.html
 security:
 
+    encoders:
+        FOS\UserBundle\Model\UserInterface: bcrypt
+
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: ROLE_ADMIN
+
+    providers:
+        fos_userbundle:
+            id: fos_user.user_provider.username
+
     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
     providers:
         doctrine:
@@ -15,11 +26,22 @@ security:
             security: false
 
         main:
-            anonymous: ~
-            # activate different ways to authenticate
+            pattern: ^/
+            form_login:
+                provider: fos_userbundle
+                csrf_token_generator: security.csrf.token_manager
+#                csrf_token_id: dashboard_authenticate
+                default_target_path: /login
 
-            # http_basic: ~
-            # http://symfony.com/doc/current/book/security.html#a-configuring-how-your-users-will-authenticate
+            logout:
+                path: /logout
+                target: /login
+                invalidate_session: false
+            anonymous:    true
 
-            # form_login: ~
-            # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+    access_control:
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/, role: ROLE_ADMIN }
+        - { path: ^/, roles: ROLE_USER }

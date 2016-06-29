@@ -1,4 +1,13 @@
-webroot:
-    path:   /
-    defaults:   { _controller: 'PublicBundle:Public:index' }
+akela_home:
+    path: /
+    defaults:   { _controller: PublicBundle:Public:index }
 
+akela_admin:
+    resource: "@AdminBundle/Resources/config/routing.yml"
+
+
+akela_user:
+    resource: "@UserBundle/Resources/config/routing.yml"
+#
+#webroot:
+#    path: /

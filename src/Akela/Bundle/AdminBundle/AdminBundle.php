@@ -6,15 +6,11 @@
  * @License    PROPRIETARY
  */
 
-namespace Akela\Bundle\UserBundle;
+namespace Akela\Bundle\AdminBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-
-class UserBundle extends Bundle
+class AdminBundle extends Bundle
 {
-    public function getParent()
-    {
-        return 'FOSUserBundle';
-    }
+
 }

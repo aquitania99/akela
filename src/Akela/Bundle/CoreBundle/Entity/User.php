@@ -3,8 +3,9 @@
 namespace Akela\Bundle\CoreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use FOS\UserBundle\Model\User as BaseUser;
 
-use Akela\Bundle\CoreBundle\Entity\Counsellors;
+//use Akela\Bundle\CoreBundle\Entity\Counsellors;
 
 /**
  * User
@@ -12,63 +13,8 @@ use Akela\Bundle\CoreBundle\Entity\Counsellors;
  * @ORM\Table(name="user", uniqueConstraints={@ORM\UniqueConstraint(name="user_username_unique", columns={"username"}), @ORM\UniqueConstraint(name="user_email_unique", columns={"email"})})
  * @ORM\Entity
  */
-class User
+class User extends BaseUser
 {
-    /**
-     * @ORM\ManyToOne(targetEntity="Counsellor")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $counsellor;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="type", type="string", length=255, nullable=true)
-     */
-    private $type;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="firstname", type="string", length=255, nullable=false)
-     */
-    private $firstname;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="lastname", type="string", length=255, nullable=false)
-     */
-    private $lastname;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="username", type="string", length=255, nullable=true)
-     */
-    private $username;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="email", type="string", length=255, nullable=false)
-     */
-    private $email;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="password", type="string", length=255, nullable=false)
-     */
-    private $password;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="mobile", type="integer", nullable=false)
-     */
-    private $mobile;
-
     /**
      * @var integer
      *
@@ -76,63 +22,118 @@ class User
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Counsellor")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    protected $counsellor;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="type", type="string", length=255, nullable=true)
+     */
+    protected $type;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="firstname", type="string", length=255, nullable=false)
+     */
+    protected $firstname;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="lastname", type="string", length=255, nullable=false)
+     */
+    protected $lastname;
+
+//    /**
+//     * @var string
+//     *
+//     * @ORM\Column(name="username", type="string", length=255, nullable=true)
+//     */
+//    protected $username;
+//
+//    /**
+//     * @var string
+//     *
+//     * @ORM\Column(name="email", type="string", length=255, nullable=false)
+//     */
+//    protected $email;
+//
+//    /**
+//     * @var string
+//     *
+//     * @ORM\Column(name="password", type="string", length=255, nullable=false)
+//     */
+//    protected $password;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="mobile", type="integer", nullable=false)
+     */
+    protected $mobile;
 
     /**
      * @var string
      *
      * @ORM\Column(name="gender", type="string", length=255, nullable=false)
      */
-    private $gender;
+    protected $gender;
 
     /**
      * @var string
      *
      * @ORM\Column(name="nationality", type="string", length=255, nullable=true)
      */
-    private $nationality;
+    protected $nationality;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="dob", type="date", nullable=true)
      */
-    private $dob;
+    protected $dob;
 
     /**
      * @var string
      *
      * @ORM\Column(name="birth_country", type="string", length=255, nullable=true)
      */
-    private $birthCountry;
+    protected $birthCountry;
 
     /**
      * @var string
      *
      * @ORM\Column(name="birth_city", type="string", length=255, nullable=true)
      */
-    private $birthCity;
+    protected $birthCity;
 
     /**
      * @var string
      *
      * @ORM\Column(name="remember_token", type="string", length=100, nullable=true)
      */
-    private $rememberToken;
+    protected $rememberToken;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="created_at", type="datetime", nullable=true)
      */
-    private $createdAt;
+    protected $createdAt;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="updated_at", type="datetime", nullable=true)
      */
-    private $updatedAt;
+    protected $updatedAt;
 
     /**
      * @return mixed

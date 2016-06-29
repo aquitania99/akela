@@ -19,10 +19,10 @@ class PublicController  extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $countries = $em->getRepository('CoreBundle:User')->findAll();
-
-        dump($countries);
-
-        return $this->render('::home.html.twig');
+        $users = $em->getRepository('CoreBundle:User')->findAll();
+        
+        $user = $this->getUser();
+        dump($users, $user);
+        return $this->render('::home.html.twig', array( 'user' => $user->getFirstName().' '.$user->getLastName() ));
     }
 }
