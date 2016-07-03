@@ -1,4 +1,9 @@
-{% extends '::base.html.twig' %}
-{% block body %}
+{#{% extends '::base.html.twig' %}#}
+{#{% block body %}#}
+    {#{{ block('fos_user_content') }}#}
+{#{% endblock %}#}
+
+{% extends ':layouts:akela-index.html.twig' %}
+{% block content %}
     {{ block('fos_user_content') }}
 {% endblock %}

@@ -56,21 +56,20 @@
                 <ul class="dropdown-menu">
                     <li><a class="english"><img src="{{asset('images/flags/gb.png')}}" alt=""> English</a></li>
                     <li><a class="espana"><img src="{{asset('images/flags/es.png')}}" alt=""> Español</a></li>
-                    <li><a class="deutsch"><img src="{{asset('images/flags/de.png')}}" alt=""> Deutsch</a></li>
                 </ul>
             </li>
 
             <li class="dropdown dropdown-user">
                 <a class="dropdown-toggle" data-toggle="dropdown">
                     <img src="{{asset('images/placeholder.jpg')}}" alt="">
-                    <span>{{ 'firstnme' }} {{ 'lastname' }}</span>
+                    <span>{{ user }}</span>
                     <i class="caret"></i>
                 </a>
 
                 <ul class="dropdown-menu dropdown-menu-right">
                     <li><a href="{{'profile_id'}}"><i class="icon-user-plus"></i> My profile</a></li>
                     <li><a href="#"><i class="icon-cog5"></i> Account settings</a></li>
-                    <li><a href=""><i class="icon-switch2"></i> Logout</a></li>
+                    <li><a href="{{ '/logout' }}"><i class="icon-switch2"></i> Logout</a></li>
                 </ul>
             </li>
         </ul>
@@ -93,7 +92,7 @@
                         <div class="media">
                             <a href="#" class="media-left"><img src="{{asset('images/placeholder.jpg')}}" class="img-circle img-sm" alt=""></a>
                             <div class="media-body">
-                                <span class="media-heading text-semibold">{{ 'firstname' }} {{ 'lastname' }}</span>
+                                <span class="media-heading text-semibold">{{ user }}</span>
                                 <div class="text-size-mini text-muted">
                                     <i class="icon-pin text-size-small"></i> &nbsp;Sydney, NSW
                                 </div>
@@ -115,12 +114,12 @@
                 <!-- Main navigation -->
                 <div class="sidebar-category sidebar-category-visible">
                     <div class="category-content no-padding">
-                        <ul class="navigation navigation-main navigation-accordion">
+                        <ul class="navigation navigation-main navigation-accordion" id="ul_main_nav">
 
                             <!-- Main -->
                             <li class="navigation-header"><span>Main</span> <i class="icon-menu" title="Main pages"></i></li>
-                            <li class="active"><a href="{{'/dashboard'}}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
-                            <li>
+                            <li class="active" id="li_dashboard"><a href="{{'/'}}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+                            <li id="li_clients">
                                 <a href="#"><i class="fa fa-user-plus"></i> <span>Clients</span></a>
                                 <ul>
                                     <li><a href="{{'/student'}}">Show Students</a></li>
@@ -132,28 +131,25 @@
                                     <li><a href="{{'/student/documents'}}">Documents</a> </li>
                                 </ul>
                             </li>
-                            <li>
+                            <li id="li_exp_visas">
                                 <a href="#"><i class="fa fa-bullhorn"></i> <span>Expiring Visas</span></a>
                                 <ul>
                                     <li><a href="#"><i class="fa fa-envelope-o"></i> <span>Search and Email</span></a></li>
                                 </ul>
                             </li>
-                            <!-- /main -->
-
-                            <!-- Forms -->
-                            <li class="navigation-header"><span>Courses and Diplomas</span> <i class="icon-menu" title="Forms"></i></li>
-                            <li>
-                                <a href="#"><i class="glyphicon glyphicon-search"></i> <span>Search By User</span></a>
+                            <li id="li_courses">
+                                <a href="#"><i class="fa fa-book"></i> <span>Courses and Diplomas</span></a>
                                 <ul>
                                     <li><a href="wizard_steps.html"><i class="icon-pencil3"></i> <span>Add English Course</span></a></li>
                                     <li><a href="#"><i class="fa fa-mortar-board"></i> <span>Add Diploma</span></a></li>
+                                    <li><a href="#"><i class="glyphicon glyphicon-search"></i> <span>Search By User</span></a></li>
                                 </ul>
                             </li>
-                            <!-- /forms -->
+                            <!-- /main -->
 
                             <!-- Appearance -->
                             <li class="navigation-header"><span>Administration</span> <i class="icon-menu" title="Administration"></i></li>
-                            <li>
+                            <li id="li_client_payments">
                                 <a href="#"><i class="icon-grid"></i> <span>Client Payment Receipts</span></a>
                                 <ul>
                                     <li><a href="components_modals.html">Search</a></li>
@@ -161,7 +157,7 @@
                                     <li><a href="components_tabs.html">Create</a></li>
                                 </ul>
                             </li>
-                            <li>
+                            <li id="li_invoices">
                                 <a href="#"><i class="icon-cash3"></i> <span>Invoicing</span></a>
                                 <ul>
                                     <li><a href="{{'/invoices'}}">Invoice dashboard</a></li>
@@ -170,11 +166,11 @@
                                     <li><a href="components_tabs.html">Create new invoice</a></li>
                                 </ul>
                             </li>
-                            <li>
+                            <li id="li_extras">
                                 <a href="#"><i class="icon-gift"></i> <span>Extra components</span></a>
                                 <ul>
                                     <li>
-                                        <a href="#"><i class="icon-people"></i> <span>Manage Counsellors</span></a>
+                                        <a href="#"><i class="icon-people"></i> <span>Manage Staff</span></a>
                                         <ul>
                                             <li><a href="{{'/register-counsellor'}}">Create</a></li>
                                             <li><a href="extra_sliders_noui.html">Update</a></li>
@@ -210,7 +206,7 @@
                 <div class="page-header page-header-default">
                     <div class="page-header-content">
                         <div class="page-title">
-                            <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Home</span> - Dashboard</h4>
+                            <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Home</span> - {{ page }}</h4>
                         </div>
 
                         <div class="heading-elements">
@@ -225,7 +221,7 @@
                     <div class="breadcrumb-line">
                         <ul class="breadcrumb">
                             <li><a href="{{'/dashboard'}}"><i class="icon-home2 position-left"></i> Home</a></li>
-                            <li class="active">Dashboard</li>
+                            <li class="active">{{ page }}</li>
                         </ul>
 
                         <ul class="breadcrumb-elements">
@@ -254,7 +250,7 @@
                 {% endblock %}
                 <!-- Footer -->
                 <div class="footer text-muted">
-                    &copy; 2016. <a href="#">MinotaurCRM</a> by <a href="http://www.sevenstudio.com.au" target="_blank">Seven Studio</a>
+                    &copy; 2016. <a href="#">Akela</a> by <a href="http://www.sevenstudio.com.au" target="_blank">Seven Studio</a>
                 </div>
                 <!-- /footer -->
             </div>

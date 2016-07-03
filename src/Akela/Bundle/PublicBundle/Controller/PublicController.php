@@ -22,7 +22,7 @@ class PublicController  extends Controller
         $users = $em->getRepository('CoreBundle:User')->findAll();
         
         $user = $this->getUser();
-        dump($users, $user);
-        return $this->render('::home.html.twig', array( 'user' => $user->getFirstName().' '.$user->getLastName() ));
+//        dump($users, $user);
+        return $this->render('::home.html.twig', array( 'user' => $user->getFirstName().' '.$user->getLastName(), 'page' => 'Dashboard' ));
     }
 }

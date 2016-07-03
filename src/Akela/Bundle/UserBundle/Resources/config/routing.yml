@@ -2,6 +2,25 @@ akela_user_home:
     path:       /
     defaults:   { _controller: UserBundle:User:index }
 
+akela_user_show:
+    path:       /student
+    defaults:   { _controller: UserBundle:User:show }
+
+akela_user_edit:
+    path:       /student/edit/{id}
+    defaults:   { _controller: UserBundle:User:edit }
+    methods:    [GET,PUT]
+
+akela_user_add:
+    path:       /student/add
+    defaults:   { _controller: UserBundle:User:add }
+    methods:    [GET,POST]
+
+akela_user_add:
+    path:       /student/search
+    defaults:   { _controller: UserBundle:User:search }
+    methods:    [GET,POST]
+
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 
