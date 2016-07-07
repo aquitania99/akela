@@ -1,10 +1,33 @@
-@extends('layouts.akela-dashboard.html.twig')
+{% extends ':layouts:akela-dashboard.html.twig' %}
 
-@section('page-header')
-    @parent
-    @stop
-@section('content')
-<h1>
-    {{$profile->native_language}}
-</h1>
-@endsection
+{%  block page_header %}
+    <!-- Theme JS files -->
+    {#<script type="text/javascript" src="{{asset('js/plugins/tables/datatables/datatables.min.js')}}"></script>#}
+
+    {#<script type="text/javascript" src="{{asset('js/pages/datatables_basic.js')}}"></script>#}
+    <!-- /theme JS files -->
+    {{ parent() }}
+    <script type="text/javascript">
+        var newActive = $('#li_clients');
+
+        $("li").click(function(){
+            if( !( $( '#li_clients' ).class( 'active' ) ) ) {
+                $(this).removeClass('active');
+                newActive.addClass('active');
+            }
+        });
+    </script>
+{% endblock %}
+{% block content %}
+    {{ user }}
+    {{ Data.firstname }}
+    {{ form_start(form) }}
+
+    {{ form_row(form.firstname ) }}
+    {{ form_row(form.lastname ) }}
+
+    <button type="submit" class="btn btn-success">Update <span class="fa fa-lock"></span></button>
+
+    {{ form_end(form) }}
+    {{ dump(Data) }}
+{% endblock %}

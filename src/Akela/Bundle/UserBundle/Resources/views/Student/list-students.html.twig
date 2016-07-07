@@ -38,7 +38,7 @@
                     <td>{{ student.email }}</td>
                     <td>{{ student.mobile }}</td>
                     <td>
-                    {% if student.enabled %}
+                    {% if student.isActive %}
                         <span class="label label-success">Active</span>
                     {% else %}
                         <span class="label label-default">Inactive</span>
@@ -52,7 +52,7 @@
                                 </a>
 
                                 <ul class="dropdown-menu dropdown-menu-right">
-                                    <li><a href="#"><i class="glyphicon-edit"></i> Edit</a></li>
+                                    <li><a href="{{ "/student/edit/"}}{{ student.id }}"><i class="glyphicon-edit"></i> Edit</a></li>
                                     <li><a href="#"><i class="icon-balance"></i> View Payments</a></li>
                                     <li><a href="#"><i class="glyphicon-education"></i> Courses</a></li>
                                 </ul>

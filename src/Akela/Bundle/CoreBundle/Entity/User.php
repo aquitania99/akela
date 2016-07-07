@@ -3,7 +3,9 @@
 namespace Akela\Bundle\CoreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use FOS\UserBundle\Model\User as BaseUser;
+use Symfony\Component\Security\Core\User\UserInterface;
+
+//use FOS\UserBundle\Model\User as BaseUser;
 
 //use Akela\Bundle\CoreBundle\Entity\Counsellors;
 
@@ -13,8 +15,9 @@ use FOS\UserBundle\Model\User as BaseUser;
  * @ORM\Table(name="user", uniqueConstraints={@ORM\UniqueConstraint(name="user_username_unique", columns={"username"}), @ORM\UniqueConstraint(name="user_email_unique", columns={"email"})})
  * @ORM\Entity
  */
-class User extends BaseUser
+class User implements UserInterface
 {
+
     /**
      * @var integer
      *
@@ -22,118 +25,146 @@ class User extends BaseUser
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected $id;
+    private $id;
 
     /**
      * @ORM\ManyToOne(targetEntity="Counsellor")
      * @ORM\JoinColumn(nullable=false)
      */
-    protected $counsellor;
+    private $counsellor;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="type", type="string", length=255, nullable=true)
+     * @ORM\Column(name="roles", type="json_array")
      */
-    protected $type;
+    private $roles = [];
 
     /**
      * @var string
      *
      * @ORM\Column(name="firstname", type="string", length=255, nullable=false)
      */
-    protected $firstname;
+    private $firstname;
 
     /**
      * @var string
      *
      * @ORM\Column(name="lastname", type="string", length=255, nullable=false)
      */
-    protected $lastname;
+    private $lastname;
 
-//    /**
-//     * @var string
-//     *
-//     * @ORM\Column(name="username", type="string", length=255, nullable=true)
-//     */
-//    protected $username;
-//
-//    /**
-//     * @var string
-//     *
-//     * @ORM\Column(name="email", type="string", length=255, nullable=false)
-//     */
-//    protected $email;
-//
-//    /**
-//     * @var string
-//     *
-//     * @ORM\Column(name="password", type="string", length=255, nullable=false)
-//     */
-//    protected $password;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="username", type="string", length=255, nullable=true)
+     */
+    private $username;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=255, nullable=false, unique=true)
+     */
+    private $email;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="password", type="string", length=68)
+     */
+    private $password;
+
+    private $plainPassword;
     /**
      * @var integer
      *
      * @ORM\Column(name="mobile", type="integer", nullable=false)
      */
-    protected $mobile;
+    private $mobile;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="gender", type="string", length=255, nullable=false)
+     * @ORM\Column(name="gender", type="string", length=2, nullable=false)
      */
-    protected $gender;
+    private $gender;
 
     /**
      * @var string
      *
      * @ORM\Column(name="nationality", type="string", length=255, nullable=true)
      */
-    protected $nationality;
+    private $nationality;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="dob", type="date", nullable=true)
      */
-    protected $dob;
+    private $dob;
 
     /**
      * @var string
      *
      * @ORM\Column(name="birth_country", type="string", length=255, nullable=true)
      */
-    protected $birthCountry;
+    private $birthCountry;
 
     /**
      * @var string
      *
      * @ORM\Column(name="birth_city", type="string", length=255, nullable=true)
      */
-    protected $birthCity;
+    private $birthCity;
 
     /**
      * @var string
      *
      * @ORM\Column(name="remember_token", type="string", length=100, nullable=true)
      */
-    protected $rememberToken;
+    private $rememberToken;
+
+    /**
+     * @var boolean
+     * 
+     * @ORM\Column(name="is_active", type="boolean", nullable=true)
+     */
+    private $isActive;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="created_at", type="datetime", nullable=true)
      */
-    protected $createdAt;
+    private $createdAt;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="updated_at", type="datetime", nullable=true)
      */
-    protected $updatedAt;
+    private $updatedAt;
+
+    public function getRoles()
+    {
+        $roles = $this->roles;
+
+        if ( !in_array( 'ROLE_USER', $roles ) ) {
+            $roles[] = 'ROLE_USER';
+        }
+
+        return $roles;
+    }
+
+    public function getSalt()
+    {
+    }
+
+    public function eraseCredentials()
+    {
+        $this->plainPassword = null;
+    }
 
     /**
      * @return mixed
@@ -271,18 +302,15 @@ class User extends BaseUser
         return $this->email;
     }
 
+
     /**
-     * Set password
+     * Set Password
      *
-     * @param string $password
-     *
-     * @return Users
+     * @param $password
      */
     public function setPassword($password)
     {
         $this->password = $password;
-
-        return $this;
     }
 
     /**
@@ -520,4 +548,46 @@ class User extends BaseUser
     {
         return $this->id;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+
+    /**
+     * @param mixed $plainPassword
+     */
+    public function setPlainPassword($plainPassword)
+    {
+        $this->plainPassword = $plainPassword;
+        $this->password = null;
+    }
+
+    /**
+     * @param string $roles
+     */
+    public function setRoles($roles)
+    {
+        $this->roles = $roles;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isIsActive()
+    {
+        return $this->isActive;
+    }
+
+    /**
+     * @param boolean $isActive
+     */
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
+    }
+
 }

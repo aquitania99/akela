@@ -8,7 +8,6 @@
 
 namespace Akela\Bundle\CoreBundle\DataFixtures;
 
-use Akela\Bundle\CoreBundle\Entity\Users;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use \Nelmio\Alice\Fixtures;

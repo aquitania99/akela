@@ -29,28 +29,28 @@ class Country
     /**
      * @var string
      *
-     * @ORM\Column(name="nice_name", type="string", length=255, nullable=false)
+     * @ORM\Column(name="nicename", type="string", length=255, nullable=false)
      */
     private $niceName;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="iso3", type="string", length=255, nullable=false)
+     * @ORM\Column(name="iso3", type="string", length=255, nullable=true)
      */
     private $iso3;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="numcode", type="integer", nullable=false)
+     * @ORM\Column(name="numcode", type="integer", nullable=true)
      */
     private $numcode;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="phonecode", type="integer", nullable=false)
+     * @ORM\Column(name="phonecode", type="integer", nullable=true)
      */
     private $phonecode;
 

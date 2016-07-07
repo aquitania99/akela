@@ -26,8 +26,10 @@ Akela\Bundle\CoreBundle\Entity\User:
         lastname: <lastName()>
         username: <userName()>
         email (unique): <email()>
-        password: "Pass@word01"
+        plainPassword: "Pass@word01"
         mobile: <phoneNumber()>
         gender: '50%? M : F'
         nationality: <country()>
         counsellor: '@counsellor_*'
+        isActive:   1
+        roles: ['ROLE_ADMIN']

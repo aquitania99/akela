@@ -4,10 +4,12 @@ parameters:
 #    parameter_name: value
 
 services:
-#    service_name:
-#        class: AppBundle\Directory\ClassName
-#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
-    akela.form.registration:
-        class: UserBundle\Form\RegistrationType
+    akela.security.login_form_authenticator:
+        class: Akela\Bundle\UserBundle\Security\LoginFormAuthenticator
+        autowire: true
+
+    akela.doctrine.hash_password_listener:
+        class: Akela\Bundle\UserBundle\Doctrine\HashPasswordListener
+        autowire: true
         tags:
-            - { name: form.type, alias: akela_user_registration }
+            - { name: doctrine.event_subscriber }

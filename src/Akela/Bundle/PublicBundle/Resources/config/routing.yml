@@ -1,0 +1,7 @@
+akela_home_index:
+    path:       /
+    defaults:   { _controller: PublicBundle:Public:index }
+
+akela_home_scratch:
+    path:       /scratch
+    defaults:   { _controller: PublicBundle:Scratch:index }

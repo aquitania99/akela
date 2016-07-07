@@ -13,9 +13,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class SecurityController extends Controller
 {
-    /**
-     * @Route("/login", name="security_login")
-     */
+//    /**
+//     * @Route("/login", name="security_login")
+//     */
     public function loginAction()
     {
         $helper = $this->get('security.authentication_utils');
@@ -26,11 +26,11 @@ class SecurityController extends Controller
             'error' => $helper->getLastAuthenticationError(),
         ));
     }
-    /**
-     * @Route("/login_check", name="security_login_check")
-     */
-    public function loginCheckAction()
-    {
-        // will never be executed
-    }
+//    /**
+//     * @Route("/login_check", name="security_login_check")
+//     */
+//    public function loginCheckAction()
+//    {
+//        // will never be executed
+//    }
 }
