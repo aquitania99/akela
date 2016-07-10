@@ -9,6 +9,7 @@
 namespace Akela\Bundle\UserBundle\Controller;
 
 use Akela\Bundle\CoreBundle\Entity\User;
+use Akela\Bundle\UserBundle\Form\AddUserForm;
 use Akela\Bundle\UserBundle\Form\UserRegistrationForm;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -35,7 +36,7 @@ class UserController extends Controller
     {
         $this->user = $this->getUser();
 
-        $user = $this->user->getFirstName().' '.$this->user->getLastName();
+        $counsellor = $this->user->getFirstName().' '.$this->user->getLastName();
         
         $em = $this->getDoctrine()->getManager();
 
@@ -44,15 +45,15 @@ class UserController extends Controller
         $data = array();
 
         foreach ($users as $user => $val ) {
-            $data[] = $val;
+            if (!in_array( "ROLE_COUNSELLOR", $val->getRoles() ) ) {
+                $data[] = $val;
+            }
         }
-        
-//        dump($users, $data);
-//        return $this->render('::home.html.twig', array( 'user' => $user->getFirstName().' '.$user->getLastName() ));
+
         return $this->render('UserBundle:Student:list-students.html.twig', array(
-            'user' => $this->user->getFirstName().' '.$this->user->getLastName(),
+            'user' => $counsellor,
             'page' => 'Students',
-            'users' => $users )
+            'users' => $data )
         );
     }
     
@@ -64,11 +65,7 @@ class UserController extends Controller
         
         $em = $this->getDoctrine()->getManager();
 
-        $userData = $em->getRepository('CoreBundle:User')->find(31);
-        dump($this->user, $userData);
-
-//        return new JsonResponse( ['user' => $this->user->getFirstName().' '.$this->user->getLastName(),
-//                                   'page' => 'Students', 'Data' => $userData],200);
+        $userData = $em->getRepository('CoreBundle:User')->find($request->get('id'));
 
         return $this->render('UserBundle:Student:user-profile.html.twig', array(
             'user' => $this->user->getFirstName().' '.$this->user->getLastName(),
@@ -80,29 +77,36 @@ class UserController extends Controller
     
     public function addAction(Request $request)
     {
-        $form = $this->createForm(UserRegistrationForm::class);
+        dump($this->getUser(), $this->getUser()->getOffice()->getId());
+        $form = $this->createForm(AddUserForm::class);
 
         $form->handleRequest($request);
-        if ($form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
+
             /** @var User $user */
             $user = $form->getData();
+            $user->setRoles(['ROLE_USER']);
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
 
-            $this->addFlash('success', 'Welcome '.$user->getEmail());
+            $this->addFlash('success', $user->getFirstname().' '.$user->getLastname(). ' Has been added!!');
+            
+            return $this->redirectToRoute('akela_user_show');
 
-            return $this->get('security.authentication.guard_handler')
-                ->authenticateUserAndHandleSuccess(
-                    $user,
-                    $request,
-                    $this->get('akela.security.login_form_authenticator'),
-                    'main'
-                );
+//            return $this->get('security.authentication.guard_handler')
+//                ->authenticateUserAndHandleSuccess(
+//                    $user,
+//                    $request,
+//                    $this->get('akela.security.login_form_authenticator'),
+//                    'main'
+//                );
         }
 
         return $this->render('UserBundle:Student:adduser.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'counsellor' => $this->getUser()->getId(),
+            'office' => $this->getUser()->getOffice()->getId()
         ]);
     }
 

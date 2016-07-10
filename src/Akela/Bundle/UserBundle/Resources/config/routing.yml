@@ -21,7 +21,7 @@ akela_user_add:
 akela_user_edit:
     path:       /student/edit/{id}
     defaults:   { _controller: UserBundle:User:edit }
-    methods:    [GET,PUT]
+    methods:    [GET,POST]
 
 
 akela_user_search:

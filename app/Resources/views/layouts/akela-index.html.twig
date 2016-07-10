@@ -4,8 +4,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% block title %}
     <title>Akela - helps you lead your business</title>
-
+    {% endblock %}
+    {% block stylesheets %}
     <!-- Global stylesheets -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
     <link href="{{asset('css/icons/icomoon/styles.css')}}" rel="stylesheet" type="text/css">
@@ -14,7 +16,7 @@
     <link href="{{asset('css/components.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('css/colors.css')}}" rel="stylesheet" type="text/css">
     <!-- /global stylesheets -->
-
+    {% endblock %}
 
 </head>
 
@@ -23,8 +25,8 @@
 <!-- Main navbar -->
 <div class="navbar navbar-inverse">
     <div class="navbar-header">
-        {#<a class="navbar-brand" href=""><img src="{{asset('images/logo_light.png')}}" alt=""></a>#}
-        <a class="navbar-brand" href=""><span class="fa fa-xing">Akela Solutions</span> </a>
+        <a class="navbar-brand" href=""><img src="{{asset('images/akela-logo-crm.svg')}}" alt=""></a>
+        {#<a class="navbar-brand" href=""><span class="fa fa-xing">Akela Solutions</span> </a>#}
 
         <ul class="nav navbar-nav pull-right visible-xs-block">
             <li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
@@ -63,11 +65,21 @@
         <div class="content-wrapper">
             <!-- Content area -->
             <div class="content">
+                {% for msg in app.session.flashBag.get('success') %}
+                    <div class="alert alert-success">
+                        {{ msg }}
+                    </div>
+                {% endfor %}
+                {% for msg in app.session.flashBag.get('error') %}
+                    <div class="alert alert-danger">
+                        {{ msg }}
+                    </div>
+                {% endfor %}
                 {% block content %}
                 {%  endblock %}
                 <!-- Footer -->
                 <div class="footer text-muted text-center">
-                    &copy; 2016. <a href="#">Akela CRM</a> by <a href="http://www.sevenstudio.com.au" target="_blank">Seven Studio</a>
+                    &copy; 2016. <a href="#">AKELA</a> by <a href="http://www.sevenstudio.com.au" target="_blank">Seven Studio</a>
                 </div>
                 <!-- /footer -->
             </div>
@@ -79,6 +91,7 @@
     </div>
     <!-- /page content -->
 </div>
+{% block javascripts %}
     <!-- Core JS files -->
     <script type="text/javascript" src="{{asset('js/plugins/loaders/pace.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/core/libraries/jquery.min.js')}}"></script>
@@ -90,5 +103,6 @@
     <!-- Theme JS files -->
     <script type="text/javascript" src="{{asset('js/core/app.js')}}"></script>
     <!-- /theme JS files -->
+{% endblock %}
 </body>
 </html>

@@ -3,17 +3,16 @@
 namespace Akela\Bundle\CoreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-//use FOS\UserBundle\Model\User as BaseUser;
-
-//use Akela\Bundle\CoreBundle\Entity\Counsellors;
 
 /**
  * User
  *
  * @ORM\Table(name="user", uniqueConstraints={@ORM\UniqueConstraint(name="user_username_unique", columns={"username"}), @ORM\UniqueConstraint(name="user_email_unique", columns={"email"})})
  * @ORM\Entity
+ * @UniqueEntity(fields={"email"}, message="It looks like there's already an account for this user! ")
  */
 class User implements UserInterface
 {
@@ -28,10 +27,17 @@ class User implements UserInterface
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Counsellor")
-     * @ORM\JoinColumn(nullable=false)
+     * @var integer
+     *
+     * @ORM\Column(name="counsellor_id", type="integer", nullable=true)
      */
     private $counsellor;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Office")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $office;
 
     /**
      * @var string
@@ -98,6 +104,13 @@ class User implements UserInterface
     private $nationality;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="language", type="string", length=255, nullable=true)
+     */
+    private $language;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="dob", type="date", nullable=true)
@@ -151,8 +164,14 @@ class User implements UserInterface
         $roles = $this->roles;
 
         if ( !in_array( 'ROLE_USER', $roles ) ) {
-            $roles[] = 'ROLE_USER';
+            $roles = 'ROLE_USER';
         }
+        elseif ( in_array( 'ROLE_COUNSELLOR', $roles ) && !in_array( 'ROLE_ADMIN', $roles ) ) {
+            $roles = $roles;
+        }
+//        elseif ( in_array( 'ROLE_ADMIN', $roles ) ){
+//            $roles = 'ROLE_ADMIN';
+//        }
 
         return $roles;
     }
@@ -177,7 +196,7 @@ class User implements UserInterface
     /**
      * @param mixed $counsellor
      */
-    public function setCounsellor(Counsellor $counsellor)
+    public function setCounsellor($counsellor)
     {
         $this->counsellor = $counsellor;
     }
@@ -283,7 +302,7 @@ class User implements UserInterface
      *
      * @param string $email
      *
-     * @return Users
+     * @return $this
      */
     public function setEmail($email)
     {
@@ -328,7 +347,7 @@ class User implements UserInterface
      *
      * @param integer $mobile
      *
-     * @return Users
+     * @return $this
      */
     public function setMobile($mobile)
     {
@@ -352,7 +371,7 @@ class User implements UserInterface
      *
      * @param string $gender
      *
-     * @return Users
+     * @return $this
      */
     public function setGender($gender)
     {
@@ -376,7 +395,7 @@ class User implements UserInterface
      *
      * @param string $nationality
      *
-     * @return Users
+     * @return $this
      */
     public function setNationality($nationality)
     {
@@ -400,7 +419,7 @@ class User implements UserInterface
      *
      * @param \DateTime $dob
      *
-     * @return Users
+     * @return $this
      */
     public function setDob($dob)
     {
@@ -424,7 +443,7 @@ class User implements UserInterface
      *
      * @param string $birthCountry
      *
-     * @return Users
+     * @return $this
      */
     public function setBirthCountry($birthCountry)
     {
@@ -448,7 +467,7 @@ class User implements UserInterface
      *
      * @param string $birthCity
      *
-     * @return Users
+     * @return $this
      */
     public function setBirthCity($birthCity)
     {
@@ -472,7 +491,7 @@ class User implements UserInterface
      *
      * @param string $rememberToken
      *
-     * @return Users
+     * @return $this
      */
     public function setRememberToken($rememberToken)
     {
@@ -496,7 +515,7 @@ class User implements UserInterface
      *
      * @param \DateTime $createdAt
      *
-     * @return Users
+     * @return $this
      */
     public function setCreatedAt($createdAt)
     {
@@ -515,12 +534,11 @@ class User implements UserInterface
         return $this->createdAt;
     }
 
+
     /**
-     * Set updatedAt
+     * @param $updatedAt
      *
-     * @param \DateTime $updatedAt
-     *
-     * @return Users
+     * @return $this
      */
     public function setUpdatedAt($updatedAt)
     {
@@ -577,7 +595,7 @@ class User implements UserInterface
     /**
      * @return boolean
      */
-    public function isIsActive()
+    public function getIsActive()
     {
         return $this->isActive;
     }
@@ -588,6 +606,46 @@ class User implements UserInterface
     public function setIsActive($isActive)
     {
         $this->isActive = $isActive;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOffice()
+    {
+        return $this->office;
+    }
+
+    /**
+     * @param mixed $office
+     */
+    public function setOffice(Office $office)
+    {
+        $this->office = $office;
+    }
+
+    /**
+     * Set language
+     *
+     * @param string $language
+     *
+     * @return string
+     */
+    public function setLanguage($language)
+    {
+        $this->language = $language;
+
+        return $this;
+    }
+
+    /**
+     * Get language
+     *
+     * @return string
+     */
+    public function getLanguage()
+    {
+        return $this->language;
     }
 
 }

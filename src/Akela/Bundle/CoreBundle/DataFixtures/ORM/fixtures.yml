@@ -3,26 +3,31 @@ Akela\Bundle\CoreBundle\Entity\Office:
         addressLine1: <secondaryAddress()>
         addressLine2: <streetName()>
         phone: <phoneNumber()>
-        city: <city()>
+        city: <officeCity()>
         state: <state()>
-        country: <country()>
+        country: "Australia"
         postcode: <postcode()>
 
-Akela\Bundle\CoreBundle\Entity\Counsellor:
-    counsellor_{1..5}:
-        firstname: <firstName()>
-        lastname: <lastName()>
-        email: <email()>
-        password: "Pass@word01"
-        mobile: <phoneNumber()>
-        language: "Spanish"
-        active: 1
-        office: '@office_*'
 
 Akela\Bundle\CoreBundle\Entity\User:
-    user_{1..10}:
-        type: "usr"
-        firstname: <firstName()>
+    user_1:
+        office: "@office_*"
+        firstname: "Sergio"
+        lastname: "Medina"
+        username: "aquitania99"
+        email (unique): "aquitania99@gmail.com"
+        plainPassword: "Pass@word01"
+        mobile: "0424286635"
+        gender: 'M'
+        nationality: "Colombia"
+        isActive:   1
+        roles: ['ROLE_ADMIN', 'ROLE_COUNSELLOR', 'ROLE_USER']
+        language: "Spanish"
+        createdAt: <created()>
+
+    user_{2..10}:
+        office: "@office_*"
+        firstname: '50%? <firstNameMale()> : <firstNameFemale()>'
         lastname: <lastName()>
         username: <userName()>
         email (unique): <email()>
@@ -30,6 +35,8 @@ Akela\Bundle\CoreBundle\Entity\User:
         mobile: <phoneNumber()>
         gender: '50%? M : F'
         nationality: <country()>
-        counsellor: '@counsellor_*'
+        counsellor: 1
         isActive:   1
-        roles: ['ROLE_ADMIN']
+        roles: ['ROLE_USER']
+        language: <language()>
+        createdAt: <created()>

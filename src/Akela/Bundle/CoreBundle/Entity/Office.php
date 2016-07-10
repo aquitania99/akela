@@ -91,7 +91,7 @@ class Office
      *
      * @param string $addressLine1
      *
-     * @return Offices
+     * @return $this
      */
     public function setAddressLine1($addressLine1)
     {
@@ -115,7 +115,7 @@ class Office
      *
      * @param string $addressLine2
      *
-     * @return Offices
+     * @return $this
      */
     public function setAddressLine2($addressLine2)
     {
@@ -139,7 +139,7 @@ class Office
      *
      * @param string $phone
      *
-     * @return Offices
+     * @return $this
      */
     public function setPhone($phone)
     {
@@ -163,7 +163,7 @@ class Office
      *
      * @param string $city
      *
-     * @return Offices
+     * @return $this
      */
     public function setCity($city)
     {
@@ -187,7 +187,7 @@ class Office
      *
      * @param string $state
      *
-     * @return Offices
+     * @return $this
      */
     public function setState($state)
     {
@@ -211,7 +211,7 @@ class Office
      *
      * @param string $country
      *
-     * @return Offices
+     * @return $this
      */
     public function setCountry($country)
     {
@@ -235,7 +235,7 @@ class Office
      *
      * @param integer $postcode
      *
-     * @return Offices
+     * @return $this
      */
     public function setPostcode($postcode)
     {
@@ -259,7 +259,7 @@ class Office
      *
      * @param \DateTime $createdAt
      *
-     * @return Offices
+     * @return $this
      */
     public function setCreatedAt($createdAt)
     {
@@ -283,7 +283,7 @@ class Office
      *
      * @param \DateTime $updatedAt
      *
-     * @return Offices
+     * @return $this
      */
     public function setUpdatedAt($updatedAt)
     {

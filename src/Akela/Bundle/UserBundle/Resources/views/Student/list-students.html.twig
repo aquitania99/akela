@@ -18,6 +18,13 @@
 {% endblock %}
 
 {% block content %}
+    {% if app.session.flashBag.has('success') %}
+        <div class="alert alert-success">
+            {% for msg in app.session.flashBag.get('success') %}
+                {{ msg }}
+            {% endfor %}
+        </div>
+    {% endif %}
     <div class="panel panel-flat">
         <table class="table datatable-basic table-bordered table-striped table-hover">
             <thead>

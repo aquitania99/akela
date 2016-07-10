@@ -20,11 +20,13 @@ class SecurityController extends Controller
             '_username' => $lastUsername
         ]);
 
+        if ($error) {
+            $this->addFlash('error', 'Please check that your Username and Password are valid!!');
+        }
         return $this->render(
             'UserBundle::auth/login.html.twig', 
             array(
-                'form' => $form->createView(), 
-                'error' => $error 
+                'form' => $form->createView()
             ) 
         );
     }

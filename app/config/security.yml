@@ -6,8 +6,10 @@ security:
         Akela\Bundle\CoreBundle\Entity\User: bcrypt
 
     role_hierarchy:
-        ROLE_COUNSELLOR:  ROLE_USER
-        ROLE_SUPER_ADMIN: ROLE_ADMIN
+        ROLE_USER:          ROLE_USER
+        ROLE_COUNSELLOR:    ROLE_COUNSELLOR
+        ROLE_MANAGER:       ROLE_MANAGER
+        ROLE_SUPER_ADMIN:   ROLE_ADMIN
 
 #    providers:
 #        fos_userbundle:
