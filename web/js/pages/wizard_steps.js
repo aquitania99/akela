@@ -149,8 +149,9 @@ $(function() {
             var data = form.serialize();
             $.ajax({
                 url: form.attr("action"),
-                type: 'POST',
+                type: 'PUT',
                 data: data,
+                dataType    : 'json',
                 //or your custom data either as object {foo: "bar", ...} or foo=bar&...
                 success: function(response) {
                     console.log('Client added: ' + response)

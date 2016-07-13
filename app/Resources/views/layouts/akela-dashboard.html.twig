@@ -4,8 +4,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Akela - helps you lead your business</title>
-
+    {% block title %}
+        <title>Akela - helps you lead your business</title>
+    {% endblock %}
+    {% block stylesheets %}
     <!-- Global stylesheets -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
     <link href="{{asset('css/icons/icomoon/styles.css')}}" rel="stylesheet" type="text/css">
@@ -15,14 +17,30 @@
     <link href="{{asset('css/components.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('css/colors.css')}}" rel="stylesheet" type="text/css">
     <!-- /global stylesheets -->
+    {% endblock %}
 
-    <!-- Core JS files -->
-    <script type="text/javascript" src="{{asset('js/plugins/loaders/pace.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('js/core/libraries/jquery.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('js/core/libraries/bootstrap.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('js/plugins/loaders/blockui.min.js')}}"></script>
-    <!-- /core JS files -->
+    {% block javascripts %}
+        <!-- Core JS files -->
+        <script type="text/javascript" src="{{asset('js/plugins/loaders/pace.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('js/core/libraries/jquery.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('js/core/libraries/bootstrap.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('js/plugins/loaders/blockui.min.js')}}"></script>
+        <!-- /core JS files -->
 
+        <!-- Theme JS files -->
+
+        {#<script type="text/javascript" src="{{asset('js/plugins/visualization/d3/d3.min.js')}}"></script>#}
+        {#<script type="text/javascript" src="{{asset('js/plugins/visualization/d3/d3_tooltip.js')}}"></script>#}
+        {#<script type="text/javascript" src="{{asset('js/plugins/forms/styling/switchery.min.js')}}"></script>#}
+        {#<script type="text/javascript" src="{{asset('js/plugins/forms/styling/uniform.min.js')}}"></script>#}
+        {#<script type="text/javascript" src="{{asset('js/plugins/forms/selects/bootstrap_multiselect.js')}}"></script>#}
+        {#<script type="text/javascript" src="{{asset('js/plugins/ui/moment/moment.min.js')}}"></script>#}
+        {#<script type="text/javascript" src="{{asset('js/plugins/pickers/daterangepicker.js')}}"></script>#}
+
+        <script type="text/javascript" src="{{asset('js/core/app.js')}}"></script>
+        {#<script type="text/javascript" src="{{asset('js/pages/dashboard.js')}}"></script>#}
+        <!-- /theme JS files -->
+    {% endblock %}
 </head>
 
 <body>
@@ -172,7 +190,7 @@
                                     <li>
                                         <a href="#"><i class="icon-people"></i> <span>Manage Staff</span></a>
                                         <ul>
-                                            <li><a href="{{'/register-counsellor'}}">Create</a></li>
+                                            <li><a href="{{'/register-user'}}">Create</a></li>
                                             <li><a href="extra_sliders_noui.html">Update</a></li>
                                             <li><a href="extra_sliders_noui.html">Remove</a></li>
                                         </ul>
@@ -257,18 +275,5 @@
         </div>
     </div>
 </div>
-
-<!-- Theme JS files -->
-<script type="text/javascript" src="{{asset('js/plugins/visualization/d3/d3.min.js')}}"></script>
-<script type="text/javascript" src="{{asset('js/plugins/visualization/d3/d3_tooltip.js')}}"></script>
-<script type="text/javascript" src="{{asset('js/plugins/forms/styling/switchery.min.js')}}"></script>
-<script type="text/javascript" src="{{asset('js/plugins/forms/styling/uniform.min.js')}}"></script>
-<script type="text/javascript" src="{{asset('js/plugins/forms/selects/bootstrap_multiselect.js')}}"></script>
-<script type="text/javascript" src="{{asset('js/plugins/ui/moment/moment.min.js')}}"></script>
-<script type="text/javascript" src="{{asset('js/plugins/pickers/daterangepicker.js')}}"></script>
-
-<script type="text/javascript" src="{{asset('js/core/app.js')}}"></script>
-<script type="text/javascript" src="{{asset('js/pages/dashboard.js')}}"></script>
-<!-- /theme JS files -->
 </body>
 </html>

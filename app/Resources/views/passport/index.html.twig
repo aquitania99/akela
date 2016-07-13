@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Passport list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Userid</th>
+                <th>Passportnumber</th>
+                <th>Passportissuedate</th>
+                <th>Passportexpirydate</th>
+                <th>Passportissuingauthority</th>
+                <th>Createdat</th>
+                <th>Updatedat</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for passport in passports %}
+            <tr>
+                <td><a href="{{ path('passport_show', { 'id': passport.id }) }}">{{ passport.userId }}</a></td>
+                <td>{{ passport.passportNumber }}</td>
+                <td>{% if passport.passportIssueDate %}{{ passport.passportIssueDate|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if passport.passportExpiryDate %}{{ passport.passportExpiryDate|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ passport.passportIssuingAuthority }}</td>
+                <td>{% if passport.createdAt %}{{ passport.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if passport.updatedAt %}{{ passport.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ passport.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('passport_show', { 'id': passport.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('passport_edit', { 'id': passport.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('passport_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

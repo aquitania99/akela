@@ -1,4 +1,4 @@
-{% extends ':layouts:akela-dashboard.html.twig' %}
+{% extends 'UserBundle:Student:formLayout.html.twig' %}
 
 {%  block page_header %}
     <!-- Theme JS files -->
@@ -7,14 +7,6 @@
     <script type="text/javascript" src="{{asset('js/pages/datatables_basic.js')}}"></script>
     <!-- /theme JS files -->
     {{ parent() }}
-    <script type="text/javascript">
-        var newActive = $('#li_clients');
-
-        $("li").click(function(){
-            $(this).removeClass('active');
-            newActive.addClass('active');
-        });
-    </script>
 {% endblock %}
 
 {% block content %}

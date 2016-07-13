@@ -17,6 +17,12 @@ akela_user_show:
 akela_user_add:
     path:       /student/add
     defaults:   { _controller: UserBundle:User:add }
+    methods:    [GET]
+
+akela_user_add_process:
+    path:       /student/add
+    defaults:   { _controller: UserBundle:User:add }
+    methods:    [PUT]
 
 akela_user_edit:
     path:       /student/edit/{id}

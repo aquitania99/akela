@@ -104,6 +104,14 @@ class User implements UserInterface
     private $nationality;
 
     /**
+     * var string
+     *
+     * @ORM\Column(name="passport", type="string", nullable=false)
+     *
+     */
+    private $passport;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="language", type="string", length=255, nullable=true)
@@ -140,7 +148,7 @@ class User implements UserInterface
 
     /**
      * @var boolean
-     * 
+     *
      * @ORM\Column(name="is_active", type="boolean", nullable=true)
      */
     private $isActive;
@@ -646,6 +654,22 @@ class User implements UserInterface
     public function getLanguage()
     {
         return $this->language;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPassport()
+    {
+        return $this->passport;
+    }
+
+    /**
+     * @param mixed $passport
+     */
+    public function setPassport($passport)
+    {
+        $this->passport = $passport;
     }
 
 }

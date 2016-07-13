@@ -1,45 +1,8 @@
-{% extends ':layouts:akela-index.html.twig' %}
-{% block stylesheets %}
-    {{ parent() }}
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.css">
-{% endblock %}
+{% extends 'UserBundle:Student:formLayout.html.twig' %}
 
 {% block content %}
-{{ dump(counsellor) }}
-{%  for msg in app.session.flashBag.get('success') %}
-    <div class="alert alert-success"> {{ msg }}</div>
-{% endfor %}
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12">
-                <h1>Register!</h1>
-
-                {{ form_start(form) }}
-                    {{ form_row(form.firstname) }}
-                    {{ form_row(form.lastname) }}
-                    {{ form_row(form.username) }}
-                    {{ form_row(form.email) }}
-                    {#{{ form_row(form.plainPassword.first, { 'label': 'Password' }) }}#}
-                    {#{{ form_row(form.plainPassword.second, { 'label': 'Repeat Password' }) }}#}
-                    {{ form_row(form.counsellor, {'value' : counsellor }) }}
-                    {{ form_row(form.roles) }}
-
-                    <button type="submit" class="btn btn-primary" formnovalidate>Register</button>
-                {{ form_end(form) }}
-            </div>
-        </div>
-    </div>
-{% endblock %}
-
-{% block javascripts %}
-    {{ parent() }}
-    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js"></script>
-
-    <script>
-        jQuery(document).ready(function () {
-            $('.js-datepicker').datepicker({
-                format: 'yyyy-mm-dd'
-            });
-        })
-    </script>
+    {%  for msg in app.session.flashBag.get('success') %}
+        <div class="alert alert-success"> {{ msg }}</div>
+    {% endfor %}
+    {% include 'UserBundle:Student:_form.html.twig' %}
 {% endblock %}

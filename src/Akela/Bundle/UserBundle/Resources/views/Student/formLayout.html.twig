@@ -1,0 +1,43 @@
+{% extends ':layouts:akela-dashboard.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.css">
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <!-- Theme JS files -->
+    <script type="text/javascript" src="{{ asset('js/plugins/forms/wizards/steps.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/plugins/forms/selects/select2.min.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('js/plugins/forms/styling/uniform.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/core/libraries/jasny_bootstrap.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/plugins/forms/validation/validate.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/plugins/extensions/cookie.js') }}"></script>
+
+    {#<script type="text/javascript" src="{{ asset('js/core/app.js') }}"></script>#}
+    <script type="text/javascript" src="{{ asset('js/pages/wizard_steps.js') }}"></script>
+    <!-- /theme JS files -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js"></script>
+
+    <script>
+        jQuery(document).ready(function () {
+            $('.js-datepicker').datepicker({
+                format: 'yyyy-mm-dd'
+            });
+        })
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            var pathArray = window.location.pathname.split( '/' );
+
+            switch (pathArray[1]) {
+                case 'student':
+                    $('#ul_main_nav li').removeClass('active');
+                    $('#li_clients').addClass('active');
+            }
+
+        });
+    </script>
+{% endblock %}

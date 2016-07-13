@@ -1,25 +1,5 @@
-{% extends ':layouts:akela-dashboard.html.twig' %}
+{% extends 'UserBundle:Student:formLayout.html.twig' %}
 
-{%  block page_header %}
-    {{ parent() }}
-    <script type="text/javascript">
-        var newActive = $('#li_clients');
-
-        $("li").click(function(){
-            if( !( $( '#li_clients' ).class( 'active' ) ) ) {
-                $(this).removeClass('active');
-                newActive.addClass('active');
-            }
-        });
-    </script>
-{% endblock %}
 {% block content %}
-    {{ form_start(form) }}
-
-    {{ form_row(form.firstname ) }}
-    {{ form_row(form.lastname ) }}
-
-    <button type="submit" class="btn btn-success">Update <span class="fa fa-lock"></span></button>
-
-    {{ form_end(form) }}
+    {% include 'UserBundle:Student:_form.html.twig' %}
 {% endblock %}

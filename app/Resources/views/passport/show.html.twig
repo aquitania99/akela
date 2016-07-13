@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Passport</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Userid</th>
+                <td>{{ passport.userId }}</td>
+            </tr>
+            <tr>
+                <th>Passportnumber</th>
+                <td>{{ passport.passportNumber }}</td>
+            </tr>
+            <tr>
+                <th>Passportissuedate</th>
+                <td>{% if passport.passportIssueDate %}{{ passport.passportIssueDate|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Passportexpirydate</th>
+                <td>{% if passport.passportExpiryDate %}{{ passport.passportExpiryDate|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Passportissuingauthority</th>
+                <td>{{ passport.passportIssuingAuthority }}</td>
+            </tr>
+            <tr>
+                <th>Createdat</th>
+                <td>{% if passport.createdAt %}{{ passport.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Updatedat</th>
+                <td>{% if passport.updatedAt %}{{ passport.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ passport.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('passport_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('passport_edit', { 'id': passport.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
