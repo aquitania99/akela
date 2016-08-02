@@ -5,6 +5,7 @@ namespace Akela\Bundle\CoreBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
@@ -12,7 +13,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  *
  * @ORM\Table(name="user", uniqueConstraints={@ORM\UniqueConstraint(name="user_username_unique", columns={"username"}), @ORM\UniqueConstraint(name="user_email_unique", columns={"email"})})
  * @ORM\Entity
- * @UniqueEntity(fields={"email"}, message="It looks like there's already an account for this user! ")
+ * @UniqueEntity(fields={"email"}, message="It looks like there's already an user like this! ")
  */
 class User implements UserInterface
 {
@@ -68,9 +69,9 @@ class User implements UserInterface
     private $username;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="email", type="string", length=255, nullable=false, unique=true)
+     * @Assert\NotBlank()
+     * @Assert\Email()
+     * @ORM\Column(name="email", type="string", length=60, unique=true)
      */
     private $email;
 
@@ -81,6 +82,9 @@ class User implements UserInterface
      */
     private $password;
 
+    /**
+     * @Assert\NotBlank(groups={"Registration"})
+     */
     private $plainPassword;
     /**
      * @var integer
@@ -175,7 +179,7 @@ class User implements UserInterface
             $roles = 'ROLE_USER';
         }
         elseif ( in_array( 'ROLE_COUNSELLOR', $roles ) && !in_array( 'ROLE_ADMIN', $roles ) ) {
-            $roles = $roles;
+            $this->roles = $roles;
         }
 //        elseif ( in_array( 'ROLE_ADMIN', $roles ) ){
 //            $roles = 'ROLE_ADMIN';

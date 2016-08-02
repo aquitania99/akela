@@ -21,7 +21,7 @@ class AppKernel extends Kernel
 
             new Akela\Bundle\CoreBundle\CoreBundle(),
             new Akela\Bundle\PublicBundle\PublicBundle(),
-            new Akela\Bundle\UserBundle\UserBundle(),
+            new Akela\Bundle\PackBundle\PackBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

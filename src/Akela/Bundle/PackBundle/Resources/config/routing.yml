@@ -1,0 +1,36 @@
+akela_user_home:
+    path:       /
+    defaults:   { _controller: PackBundle:User:index }
+
+akela_security_login:
+    path:       /login
+    defaults:   { _controller: PackBundle:Security:login }
+
+akela_security_logout:
+    path:       /logout
+    defaults:   { _controller: PackBundle:Security:logout }
+
+akela_user_show:
+    path:       /student
+    defaults:   { _controller: PackBundle:User:show }
+
+akela_user_add:
+    path:       /student/add
+    defaults:   { _controller: PackBundle:User:add }
+    methods:    [GET]
+
+akela_user_add_process:
+    path:       /student/add
+    defaults:   { _controller: PackBundle:User:add }
+    methods:    [PUT]
+
+akela_user_edit:
+    path:       /student/edit/{id}
+    defaults:   { _controller: PackBundle:User:edit }
+    methods:    [GET,POST]
+
+
+akela_user_search:
+    path:       /student/search
+    defaults:   { _controller: PackBundle:User:search }
+    methods:    [GET,POST]

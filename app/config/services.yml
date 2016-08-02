@@ -5,11 +5,11 @@ parameters:
 
 services:
     akela.security.login_form_authenticator:
-        class: Akela\Bundle\UserBundle\Security\LoginFormAuthenticator
+        class: Akela\Bundle\PackBundle\Security\LoginFormAuthenticator
         autowire: true
 
     akela.doctrine.hash_password_listener:
-        class: Akela\Bundle\UserBundle\Doctrine\HashPasswordListener
+        class: Akela\Bundle\PackBundle\Doctrine\HashPasswordListener
         autowire: true
         tags:
             - { name: doctrine.event_subscriber }

@@ -7,7 +7,7 @@ akela_home:
 #    resource: "@AdminBundle/Resources/config/routing.yml"
 
 akela_user:
-    resource: "@UserBundle/Resources/config/routing.yml"
+    resource: "@PackBundle/Resources/config/routing.yml"
 #
 #akela_security:
 #    path: /login

@@ -15,9 +15,17 @@ class Passport
     /**
      * @var integer
      *
-     * @ORM\Column(name="user_id", type="integer", nullable=false)
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $userId;
+    private $id;
+
+    /**
+     * @ORM\OneToOne( targetEntity="Akela\Bundle\CoreBundle\Entity\User" )
+     * @ORM\JoinColumn( name="user", referencedColumnName="id" )
+     */
+    private $user;
 
     /**
      * @var string
@@ -41,6 +49,13 @@ class Passport
     private $passportExpiryDate;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_at", type="datetime", nullable=true)
+     */
+    private $createdAt;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="passport_issuing_authority", type="integer", nullable=false)
@@ -50,26 +65,9 @@ class Passport
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="created_at", type="datetime", nullable=true)
-     */
-    private $createdAt;
-
-    /**
-     * @var \DateTime
-     *
      * @ORM\Column(name="updated_at", type="datetime", nullable=true)
      */
     private $updatedAt;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $id;
-
 
 
     /**
@@ -249,4 +247,13 @@ class Passport
     {
         return $this->id;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
 }

@@ -10,7 +10,7 @@ Vagrant.configure(2) do |config|
   config.vm.provision "shell", inline: "/bin/bash /vagrant/provisioning/provision.sh"
 
   config.vm.provider "virtualbox" do |vb|
-    vb.name = "Akela Local Development"
+    vb.name = "Akela DevBox"
     vb.memory = "1024"
   end
 

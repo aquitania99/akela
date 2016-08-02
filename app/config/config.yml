@@ -93,4 +93,4 @@ assetic:
 #    user_class: Akela\Bundle\CoreBundle\Entity\User
 #    registration:
 #        form:
-#            type: Akela\Bundle\UserBundle\Form\RegistrationType
+#            type: Akela\Bundle\PackBundle\Form\RegistrationType

@@ -1,8 +1,0 @@
-{% extends 'UserBundle:Student:formLayout.html.twig' %}
-
-{% block content %}
-    {%  for msg in app.session.flashBag.get('success') %}
-        <div class="alert alert-success"> {{ msg }}</div>
-    {% endfor %}
-    {% include 'UserBundle:Student:_form.html.twig' %}
-{% endblock %}
