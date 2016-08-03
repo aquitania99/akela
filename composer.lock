@@ -910,12 +910,12 @@
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/FriendsOfSymfony/FOSPackBundle.git",
+                "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
                 "reference": "edbf8401e81faaf570e54dcd3b35cfda953f1338"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSPackBundle/zipball/edbf8401e81faaf570e54dcd3b35cfda953f1338",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/edbf8401e81faaf570e54dcd3b35cfda953f1338",
                 "reference": "edbf8401e81faaf570e54dcd3b35cfda953f1338",
                 "shasum": ""
             },
@@ -949,7 +949,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "FOS\\PackBundle\\": ""
+                    "FOS\\UserBundle\\": ""
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -963,14 +963,14 @@
                 },
                 {
                     "name": "FriendsOfSymfony Community",
-                    "homepage": "https://github.com/friendsofsymfony/FOSPackBundle/contributors"
+                    "homepage": "https://github.com/friendsofsymfony/FOSUserBundle/contributors"
                 },
                 {
                     "name": "Thibault Duplessis",
                     "email": "thibault.duplessis@gmail.com"
                 }
             ],
-            "description": "Symfony FOSPackBundle",
+            "description": "Symfony FOSUserBundle",
             "homepage": "http://friendsofsymfony.github.com",
             "keywords": [
                 "User management"

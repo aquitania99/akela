@@ -22,7 +22,7 @@ class Passport
     private $id;
 
     /**
-     * @ORM\OneToOne( targetEntity="Akela\Bundle\CoreBundle\Entity\User" )
+     * @ORM\OneToOne( targetEntity="Akela\Bundle\CoreBundle\Entity\Profile" )
      * @ORM\JoinColumn( name="user", referencedColumnName="id" )
      */
     private $user;
