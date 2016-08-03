@@ -8,8 +8,7 @@ akela_home:
 
 akela_user:
     resource: "@PackBundle/Resources/config/routing.yml"
-#
-#akela_security:
-#    path: /login
-#webroot:
-#    path: /
+
+webroot:
+    path: /
+    defaults:   { _controller: PackBundle:Security:login }

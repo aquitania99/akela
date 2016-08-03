@@ -5,6 +5,7 @@ namespace Akela\Bundle\PackBundle\Controller;
 use Akela\Bundle\PackBundle\Form\LoginForm;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Config\Definition\Exception\Exception;
+use Symfony\Component\Routing\Annotation\Route;
 
 class SecurityController extends Controller
 {
@@ -24,7 +25,7 @@ class SecurityController extends Controller
             $this->addFlash('error', 'Please check that your Username and Password are valid!!');
         }
         return $this->render(
-            'UserBundle::auth/login.html.twig', 
+            'PackBundle:auth:login.html.twig',
             array(
                 'form' => $form->createView()
             ) 

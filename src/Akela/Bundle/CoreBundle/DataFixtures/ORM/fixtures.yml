@@ -10,35 +10,35 @@ Akela\Bundle\CoreBundle\Entity\Office:
 
 Akela\Bundle\CoreBundle\Entity\User:
     user_1:
-        office: "@office_*"
+#        office: "@office_*"
         firstname: "Sergio"
         lastname: "Medina"
         username: "aquitania99"
         email (unique): "aquitania99@gmail.com"
         plainPassword: "Pass@word01"
-        mobile: "0424286635"
-        gender: 'M'
-        passport: <regexify('[A-Z0-9._%+-]+@[A-Z0-9.-]')>
-        nationality: "Colombia"
+#        mobile: "0424286635"
+#        gender: 'M'
+#        passport: <regexify('[A-Z0-9._%+-]+@[A-Z0-9.-]')>
+#        nationality: "Colombia"
         isActive:   1
         roles: ['ROLE_ADMIN', 'ROLE_COUNSELLOR', 'ROLE_USER']
-        language: "Spanish"
+#        language: "Spanish"
         createdAt: <created()>
 
 
     user_{2..10}:
-        office: "@office_*"
+#        office: "@office_*"
         firstname: '50%? <firstNameMale()> : <firstNameFemale()>'
         lastname: <lastName()>
         username: <userName()>
         email (unique): <email()>
         plainPassword: "Pass@word01"
-        mobile: <phoneNumber()>
-        gender: '50%? M : F'
-        passport: <regexify('[A-Z0-9._%+-]+@[A-Z0-9.-]')>
-        nationality: <country()>
-        counsellor: 1
+#        mobile: <phoneNumber()>
+#        gender: '50%? M : F'
+#        passport: <regexify('[A-Z0-9._%+-]+@[A-Z0-9.-]')>
+#        nationality: <country()>
+#        counsellor: 1
         isActive:   1
         roles: ['ROLE_USER']
-        language: <language()>
+#        language: <language()>
         createdAt: <created()>

@@ -9,7 +9,7 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
-                <h1>ADD USER</h1>
+                <h1>EDIT USER</h1>
 
                 {{ form_start(addUserForm) }}
                     {{ form_row(addUserForm.firstname) }}
@@ -19,9 +19,6 @@
                     }) }}
                     {{ form_row(addUserForm.email) }}
                     {{ form_row(addUserForm.plain_password) }}
-                    {{ form_row(addUserForm.isActive, {
-                        'attr': { 'style':'visibility: hidden' }
-                        }) }}
                     {{ form_row(addUserForm.createdAt) }}
 
                     <button type="submit" class="btn btn-action">Save</button>
@@ -32,5 +29,5 @@
     </div>
 
 
-    {#{%include 'PackBundle:Student:_form.html.twig'%}#}
+    {#{% include 'PackBundle:Student:_form.html.twig' %}#}
 {% endblock %}
